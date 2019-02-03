@@ -1,14 +1,6 @@
 #!/usr/bin/ruby -w
 
-def get_number_input
-  begin
-    return Integer(gets.strip)
-  rescue
-    print "Please enter a valid number.\n"
-    retry
-  end
-end
-
+require "../shared/input.rb"
 
 if __FILE__ == $0
   print "What is your current age?\n"
