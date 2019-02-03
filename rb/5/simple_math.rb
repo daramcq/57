@@ -11,11 +11,15 @@ def get_val(order)
 end
 
 
+def operation(n1, n2, operator)
+  return n1.send(operator, n2)
+end
+
+
 if __FILE__ == $0
   first_num = get_val("first")
   second_num = get_val("second")
-  print "#{first_num} + #{second_num} = #{first_num + second_num}\n"
-  print "#{first_num} - #{second_num} = #{first_num - second_num}\n"
-  print "#{first_num} * #{second_num} = #{first_num * second_num}\n"
-  print "#{first_num} / #{second_num} = #{first_num / second_num}\n"
+  for operator in [:+, :-, :*, :-]
+    print "#{first_num} #{operator} #{second_num} = #{operation(first_num, second_num, operator)}\n"
+  end
 end
