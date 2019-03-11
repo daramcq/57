@@ -10,11 +10,29 @@ OPERATORS = { 'metres' => :*, 'feet' => :/ }
 
 class AreaCalculator
 
+  def validate_unit_type(unit_type)
+
+    if UNIT_MAPPING.value?(unit_type)
+      return unit_type
+
+    elsif UNIT_MAPPING.key?(unit_type)
+      return UNIT_MAPPING[unit_type]
+
+    else
+      raise TypeError
+    end
+  end
+
   def initialize(length_value, width_value, unit_type)
     @length_value = length_value
     @width_value = width_value
-    @unit_value = unit_type
+
+    @unit_type = validate_unit_type(unit_type)
     @sq_value = @length_value * @width_value
+  end
+
+  def to_str
+    "AreaCalculator: #{@length_value} x #{@width_value} (#{@unit_type})"
   end
 
   def convert(endpoint)
@@ -24,7 +42,7 @@ class AreaCalculator
   end
 
   def square_metres
-    if @unit_value == 'metres'
+    if @unit_type == 'metres'
       return @sq_value
     else
       return convert('metres')
@@ -32,7 +50,7 @@ class AreaCalculator
   end
 
   def square_feet
-    if @unit_value == 'feet'
+    if @unit_type == 'feet'
       return @sq_value
     else
       return convert('feet')
