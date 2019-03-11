@@ -6,3 +6,19 @@ def get_number_input
     retry
   end
 end
+
+
+def get_choice_input(choices)
+  begin
+    input = gets.strip
+    puts input
+    if !choices.include(input)
+      raise
+    end
+    return input
+  rescue
+    print "Please enter one of the options: #{choices}: "
+    retry
+  end
+end
+    
