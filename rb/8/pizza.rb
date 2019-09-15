@@ -1,3 +1,5 @@
+#!/usr/bin/ruby -w
+
 class PizzaSlicer
   def initialize(pizzas, people, slices_per_pizza)
     @pizzas = pizzas
